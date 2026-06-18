@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 // Color Palette from Ancient Gild
@@ -7,7 +7,8 @@ const COLORS = {
     oldGold: '#B8AB38',
     vanillaCustard: '#E0D794',
     text: '#3D3D3D',
-    surface: '#FFFFFF',
+    //     surface: '#FFFFFF',
+
 };
 
 const DAYS = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'];
@@ -16,7 +17,7 @@ const DURATIONS = ['20-30 mins', '1 hour', '60 mins - 2 hours', '2 hours+'];
 
 export default function AdeolaScheduler() {
     const [step, setStep] = useState(0); // Starts at 0 for the First Meeting check
-    const [isFirstMeeting, setIsFirstMeeting] = useState(null);
+    const [isFirstMeeting, setIsFirstMeeting] = useState<boolean | null>(null);
     const [showTzModal, setShowTzModal] = useState(false);
     const [showCustomTime, setShowCustomTime] = useState(false);
     const [submitting, setSubmitting] = useState(false);
@@ -62,7 +63,7 @@ export default function AdeolaScheduler() {
         initial: { opacity: 0, y: 50 },
         animate: { opacity: 1, y: 0 },
         exit: { opacity: 0, y: -50 },
-        transition: { type: 'spring', damping: 25, stiffness: 200 }
+        transition: { type: 'spring' as const, damping: 25, stiffness: 200 }
     };
 
     const nextStep = () => setStep(s => s + 1);
